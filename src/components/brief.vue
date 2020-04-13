@@ -31,7 +31,7 @@
   </div>
 </template>
 <script>
-  import EditImage from '@/components/edit-image';
+  import EditImage from '@/components/common/edit-image';
 
   export default {
     name: 'Brief',

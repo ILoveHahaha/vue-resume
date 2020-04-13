@@ -10,7 +10,7 @@
   </ListItem>
 </template>
 <script>
-  import ListItem from '@/components/list-item';
+  import ListItem from '@/components/common/list-item';
 
   export default {
     name: 'ListItemSkill',

@@ -8,22 +8,22 @@
       <div class="button add" @click="add" :class="{ 'icon-margin-right': icon }">+</div>
     </div>
     <ul id="luo">
-      <ListItemAbout v-if="title === 'About me'" v-for="item in arry" :key="item.id"/>
-      <!-- <ListItemSkill v-if="title === 'Skill'" v-for="item in arry" :key="item.id"/> -->
-      <ListItemEducation v-if="title == 'Education'" v-for="item in arry" :key="item.id"/>
-      <ListItemExperience v-if="title == 'Working Experience'" v-for="item in arry" :key="item.id"/>
+      <ListItemAbout v-if="title === 'About me'"/>
+       <!--<ListItemSkill v-if="title === 'Skill'" v-for="item in arry" :key="item.id"/>-->
+      <ListItemEducation v-if="title === 'Education'" v-for="item in arry" :key="item.id"/>
+      <ListItemExperience v-if="title === 'Working Experience'" v-for="item in arry" :key="item.id"/>
       <ListItemInfo v-if="icon" v-for="item in arry" :key="item.id"/>
       <slot name="listItem"></slot>
     </ul>
   </div>
 </template>
 <script>
-  import EditImage from '@/components/edit-image';
+  import EditImage from '@/components/common/edit-image';
   import ListItemAbout from '@/components/list-item-about';
   import ListItemSkill from '@/components/list-item-skill';
   import ListItemEducation from '@/components/list-item-education';
   import ListItemExperience from '@/components/list-item-experience';
-  import ListItemInfo from '@/components/list-item-info';
+  import ListItemInfo from '@/components/common/list-item-info';
 
   export default {
     name: 'ContextList',
@@ -54,10 +54,8 @@
         arry: []
       };
     },
+    // TODO: 新增不了，需求重写
     methods: {
-      showAdd () {
-        this.add = true;
-      },
       add () {
         this.arry.push(1);
       }

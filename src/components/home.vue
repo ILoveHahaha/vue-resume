@@ -78,12 +78,12 @@
 </template>
 
 <script>
-import ContextList from '@/components/context-list';
+import ContextList from '@/components/common/context-list';
 import ListItemAbout from '@/components/list-item-about';
 import ListItemSkill from '@/components/list-item-skill';
 import ListItemEducation from '@/components/list-item-education';
 import ListItemExperience from '@/components/list-item-experience';
-import ListItemInfo from '@/components/list-item-info';
+import ListItemInfo from '@/components/common/list-item-info';
 import html2canvas from '@/assets/js/html2canvas.js';
 import FileSaver from 'file-saver';
 import Brief from '@/components/brief';
