@@ -66,7 +66,7 @@
        <button @click="saveAsPdf">Save as PDF</button>
       <button @click="print">Print</button>
     </div>
-    <!--TODO这里要修改成自己的个人博客-->
+    <!--TODO 这里要修改成自己的个人博客-->
     <div class="footer">
       <a href="https://github.com/luosijie/vue-resume" target="_blank">
         <img src="../assets/image/social/social-github.png" height="36" width="36" alt>
