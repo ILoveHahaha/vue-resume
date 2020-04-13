@@ -63,8 +63,9 @@
     <Guide/>
     <div class="actions">
       <button @click="saveAsImage">Save as PNG</button>
-       <button @click="saveAsPdf">Save as PDF</button>
+      <button @click="saveAsPdf">Save as PDF</button>
       <button @click="print">Print</button>
+      <button @click="saveResume">Save</button>
     </div>
     <!--TODO 这里要修改成自己的个人博客-->
     <div class="footer">
@@ -78,133 +79,132 @@
 </template>
 
 <script>
-import ContextList from '@/components/common/context-list';
-import ListItemAbout from '@/components/list-item-about';
-import ListItemSkill from '@/components/list-item-skill';
-import ListItemEducation from '@/components/list-item-education';
-import ListItemExperience from '@/components/list-item-experience';
-import ListItemInfo from '@/components/common/list-item-info';
-import html2canvas from '@/assets/js/html2canvas.js';
-import FileSaver from 'file-saver';
-import Brief from '@/components/brief';
-import Guide from '@/components/guide';
-// import GeneratePDF from '@/utils/generatePDF';
-import defaultData from '@/config/data';
+  import ContextList from '@/components/common/context-list';
+  import ListItemAbout from '@/components/list-item-about';
+  import ListItemSkill from '@/components/list-item-skill';
+  import ListItemEducation from '@/components/list-item-education';
+  import ListItemExperience from '@/components/list-item-experience';
+  import ListItemInfo from '@/components/common/list-item-info';
+  import html2canvas from '@/assets/js/html2canvas.js';
+  import FileSaver from 'file-saver';
+  import Brief from '@/components/brief';
+  import Guide from '@/components/guide';
+  // import GeneratePDF from '@/utils/generatePDF';
+  import defaultData from '@/config/data';
 
-export default {
-  name: 'home',
-  components: {
-    ContextList,
-    ListItemAbout,
-    ListItemSkill,
-    ListItemEducation,
-    ListItemExperience,
-    ListItemInfo,
-    Brief,
-    Guide
-  },
-  computed: {
-    defaultData () {
-      return defaultData;
+  export default {
+    name: 'home',
+    components: {
+      ContextList,
+      ListItemAbout,
+      ListItemSkill,
+      ListItemEducation,
+      ListItemExperience,
+      ListItemInfo,
+      Brief,
+      Guide
     },
-    defaultTitle () {
-      return new Map(defaultData.titleName);
-    }
-  },
-  methods: {
-    saveAsPdf () {
-      // const resume = document.querySelector('.resume');
-      // const pdf = new GeneratePDF(resume);
-      // pdf.generate();
+    computed: {
+      defaultData () {
+        return defaultData;
+      },
+      defaultTitle () {
+        return new Map(defaultData.titleName);
+      }
     },
-    saveAsImage () {
-      let resume = document.querySelector('.resume');
-      html2canvas(resume).then(canvas => {
-        canvas.toBlob(blob => {
-          FileSaver.saveAs(blob, 'Resume.png');
+    methods: {
+      saveAsPdf () {
+        // const resume = document.querySelector('.resume');
+        // const pdf = new GeneratePDF(resume);
+        // pdf.generate();
+      },
+      saveAsImage () {
+        let resume = document.querySelector('.resume');
+        html2canvas(resume).then(canvas => {
+          canvas.toBlob(blob => {
+            FileSaver.saveAs(blob, 'Resume.png');
+          });
         });
-      });
-    },
-    print () {
-      window.print();
+      },
+      print () {
+        window.print();
+      },
+      saveResume () {}
     }
-  }
-};
+  };
 </script>
 
 <style lang="less" scoped>
-.home{
-  .resume {
-    margin-top: 40px;
-    position: relative;
-    width: 790px;
-    // height: 1754px;
-    border: 1px solid #dad8d7;
-    background-color: white;
-    overflow: hidden;
-    box-sizing: border-box;
-
-    .left {
-      width: 240px;
-      height: 100%;
-      box-sizing: border-box;
-      float: left;
-      background-color: #fdfefe;
+  .home {
+    .resume {
+      margin-top: 40px;
       position: relative;
-    }
-
-    .right {
-      box-sizing: border-box;
-      width: calc(~'100% - 240px');
-      float: left;
-      padding: 25px 20px;
-      border-left: 1px solid #dad8d7;
-
-      p {
-        font-size: 14px;
-        line-height: 18px;
-        color: #555;
-        text-align: justify;
-      }
-    }
-  }
-
-  .actions {
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    margin-left: 415px;
-    display: flex;
-    flex-direction: column;
-    button {
-      padding: 5px 8px;
-      border-radius: 4px;
-      background-color: white;
+      width: 790px;
+      // height: 1754px;
       border: 1px solid #dad8d7;
-      margin-bottom: 5px;
-      cursor: pointer;
-      &:hover {
-        background-color: #f8f8f8;
+      background-color: white;
+      overflow: hidden;
+      box-sizing: border-box;
+
+      .left {
+        width: 240px;
+        height: 100%;
+        box-sizing: border-box;
+        float: left;
+        background-color: #fdfefe;
+        position: relative;
+      }
+
+      .right {
+        box-sizing: border-box;
+        width: calc(~'100% - 240px');
+        float: left;
+        padding: 25px 20px;
+        border-left: 1px solid #dad8d7;
+
+        p {
+          font-size: 14px;
+          line-height: 18px;
+          color: #555;
+          text-align: justify;
+        }
+      }
+    }
+
+    .actions {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      margin-left: 415px;
+      display: flex;
+      flex-direction: column;
+      button {
+        padding: 5px 8px;
+        border-radius: 4px;
+        background-color: white;
+        border: 1px solid #dad8d7;
+        margin-bottom: 5px;
+        cursor: pointer;
+        &:hover {
+          background-color: #f8f8f8;
+        }
+      }
+    }
+
+    .footer {
+      line-height: 50px;
+
+      a {
+        text-decoration: none;
+        color: #4aa74f;
+
+        &:first-child {
+          display: block;
+          text-align: center;
+          line-height: 0;
+          margin-top: 15px;
+        }
       }
     }
   }
-
-
-
-  .footer {
-    line-height: 50px;
-
-    a {
-      text-decoration: none;
-      color: #4aa74f;
-
-      &:first-child {
-        display: block;
-        text-align: center;
-        line-height: 0;
-        margin-top: 15px;
-      }
-    }
-  }
-}
 </style>

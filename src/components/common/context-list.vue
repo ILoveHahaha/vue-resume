@@ -2,7 +2,7 @@
   <div class="context-list" :class="{ 'icon-margin-bottom': icon }">
     <div class="list-heading" :class="{ 'icon-class': icon }">
       <div class="title">
-        <EditImage v-if="icon" :src="icon" height="20" width="20" class="img"/>
+        <EditImage v-if="icon" :src="icon" height="20" width="20" class="img" @returnImg="returnImg"/>
         <span class="name" :style="{fontSize: titleSize}" contenteditable="true">{{title}}</span>
       </div>
       <div class="button add" @click="add" :class="{ 'icon-margin-right': icon }">+</div>
@@ -58,6 +58,8 @@
     methods: {
       add () {
         this.arry.push(1);
+      },
+      returnImg (img) {
       }
     }
   };

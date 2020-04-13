@@ -32,12 +32,12 @@
     },
     methods: {
       changeImage (evt) {
-        let _this = this;
         let reader = new FileReader();
         let file = evt.target.files[0];
         reader.readAsDataURL(file);
-        reader.onload = function (evt) {
-          _this.imgSrc = evt.target.result;
+        reader.onload = (evt) => {
+          this.imgSrc = evt.target.result;
+          this.$emit('returnImg', this.imgSrc);
         };
       }
     }

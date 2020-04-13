@@ -1,7 +1,13 @@
 <template>
   <div class="brief">
     <div class="avatar">
-      <EditImage :src="require('@/assets/image/other/logo_name.png')" width="100" height="100" :isCircle="true" class="img"/>
+      <EditImage
+        :src="require('@/assets/image/other/logo_name.png')"
+        width="100"
+        height="100"
+        :isCircle="true"
+        class="img"
+        @returnImg="returnImg"/>
       <div class="name" contenteditable="true" v-html="data.name" @input="contentChange('name', $event)"></div>
       <div class="job" contenteditable="true" v-html="data.position" @input="contentChange('position', $event)"></div>
       <div class="location">
@@ -49,6 +55,8 @@
       contentChange (key, e) {
         this.data[key] = e.target.innerText;
         console.log('brief-change', this.data);
+      },
+      returnImg (img) {
       }
     }
   };

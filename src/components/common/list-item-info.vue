@@ -1,6 +1,6 @@
 <template>
   <ListItem class="list-item-info">
-    <EditImage :src="image" class="img" height="18" width="18"/>
+    <EditImage :src="image" class="img" height="18" width="18" @returnImg="returnImg"/>
     <span contenteditable="true">{{ title }}</span>
   </ListItem>
 </template>
@@ -22,6 +22,10 @@
       title: {
         type: String,
         default: 'github.com/luosijie'
+      }
+    },
+    methods: {
+      returnImg (img) {
       }
     }
   };
