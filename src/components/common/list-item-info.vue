@@ -17,7 +17,7 @@
     props: {
       image: {
         type: String,
-        default: require('@/assets/image/social/social-github.png')
+        default: require('@/assets/image/other/default-icon.png')
       },
       title: {
         type: String,

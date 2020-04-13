@@ -1,4 +1,5 @@
 <template>
+  <!--TODO 这里下一版2.0版本需要改成支持头像和不需要头像，不需要头像的时候需要展示成另一种样式-->
   <div class="brief">
     <div class="avatar">
       <EditImage
@@ -15,6 +16,7 @@
              @input="contentChange('location', $event)"></div>
       </div>
     </div>
+    <!--TODO 信息栏这里下一版2.0版本需要改成一个独立的视图组件，复用-->
     <div class="info">
       <ul>
         <li>

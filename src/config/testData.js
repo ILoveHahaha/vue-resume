@@ -7,20 +7,22 @@ export default {
     age: 24,
     degree: '本科'
   },
-  Contact: [
-    {icon: require('@/assets/image/contact/contact-phone.png'), key: 'phone', value: '1860***3412'},
-    {icon: require('@/assets/image/contact/contact-mail.png'), key: 'mail', value: 'luo_sj@163.com'},
-    {icon: require('@/assets/image/social/social-wechat.png'), key: 'wechat', value: 'lsj-weicinhao'}
-  ],
-  Social: [
-    {icon: require('@/assets/image/social/social-github.png'), key: 'github', value: 'github.com/luosijie'},
-    {icon: require('@/assets/image/social/social-dribbble.png'), key: 'dribbble', value: 'dribbble.com/luosj'}
-  ],
-  Skill: [
-    {icon: require('@/assets/image/skill/skill-vue.png'), key: 'vue', value: 'Vue'},
-    {icon: require('@/assets/image/skill/skill-node.png'), key: 'node', value: 'Node'},
-    {icon: require('@/assets/image/skill/skill-mongo.png'), key: 'mongodb', value: 'MongoDB'}
-  ],
+  selfInfo: {
+    Contact: [
+      {icon: require('@/assets/image/contact/contact-phone.png'), key: 'phone', value: '1860***3412'},
+      {icon: require('@/assets/image/contact/contact-mail.png'), key: 'mail', value: 'luo_sj@163.com'},
+      {icon: require('@/assets/image/social/social-wechat.png'), key: 'wechat', value: 'lsj-weicinhao'}
+    ],
+    Social: [
+      {icon: require('@/assets/image/social/social-github.png'), key: 'github', value: 'github.com/luosijie'},
+      {icon: require('@/assets/image/social/social-dribbble.png'), key: 'dribbble', value: 'dribbble.com/luosj'}
+    ],
+    Skill: [
+      {icon: require('@/assets/image/skill/skill-vue.png'), key: 'vue', value: 'Vue'},
+      {icon: require('@/assets/image/skill/skill-node.png'), key: 'node', value: 'Node'},
+      {icon: require('@/assets/image/skill/skill-mongo.png'), key: 'mongodb', value: 'MongoDB'}
+    ]
+  },
   AboutMe: `
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
         libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 

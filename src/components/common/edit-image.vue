@@ -18,7 +18,7 @@
       },
       src: {
         type: String,
-        default: require('@/assets/image/social/social-github.png')
+        default: require('@/assets/image/other/default-icon.png')
       },
       isCircle: {
         type: Boolean,
