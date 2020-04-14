@@ -1,5 +1,5 @@
 <template>
-  <!--TODO 尚未完成-->
+  <!--TODO 尚未完成，该功能主要用来展示用户个人信息-->
   <div class="self-info">
     <div class="context-list" :class="{ 'icon-margin-bottom': icon }">
       <div class="list-heading" :class="{ 'icon-class': icon }">
