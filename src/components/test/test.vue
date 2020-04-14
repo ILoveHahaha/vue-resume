@@ -1,6 +1,13 @@
 <template>
   <div class="test">
-    <!--<selfInfo></selfInfo>-->
+    <selfInfo
+      v-for="item in selfInfoData"
+      :key="item.id"
+      :icon="item.icon"
+      title-size="14px"
+      :title="item.name"
+      :infoItem="item.children">
+    </selfInfo>
   </div>
 </template>
 
@@ -11,18 +18,22 @@ export default {
   name: 'test',
   data () {
     return {
-      myData: testData
+      myData: testData,
+      selfInfoData: testData.selfInfo
     };
   },
   components: {
     selfInfo
   },
+  methods: {},
   mounted () {
-    console.log(this.myData);
+    console.log(this.selfInfoData);
   }
 };
 </script>
 
 <style lang="less" scoped>
-
+.test{
+  width: 240px;
+}
 </style>
