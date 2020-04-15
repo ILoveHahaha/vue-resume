@@ -54,7 +54,6 @@
         arry: []
       };
     },
-    // TODO: 新增不了，需求重写
     methods: {
       add () {
         this.arry.push(1);

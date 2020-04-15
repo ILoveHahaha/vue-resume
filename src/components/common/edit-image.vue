@@ -23,6 +23,10 @@
       isCircle: {
         type: Boolean,
         default: false
+      },
+      curComId: {
+        type: String,
+        default: ''
       }
     },
     data () {
@@ -31,13 +35,20 @@
       };
     },
     methods: {
+      /**
+       * @param {Event} evt 当前触发的节点
+       * @description 获取生成图片的base64
+       * **/
       changeImage (evt) {
         let reader = new FileReader();
         let file = evt.target.files[0];
         reader.readAsDataURL(file);
         reader.onload = (evt) => {
           this.imgSrc = evt.target.result;
-          this.$emit('returnImg', this.imgSrc);
+          this.$emit('returnImg', {
+            imgSrc: this.imgSrc,
+            id: this.curComId
+          });
         };
       }
     }

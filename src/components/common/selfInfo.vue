@@ -3,18 +3,18 @@
     <div class="context-list" :class="{ 'icon-margin-bottom': icon }">
       <div class="list-heading" :class="{ 'icon-class': icon }">
         <div class="title">
-          <editImage v-if="icon" :src="icon" height="20" width="20" class="img" @returnImg="returnImg"/>
+          <editImage v-if="icon" :src="icon" :curComId="parentId" height="20" width="20" class="img" @returnImg="returnImg"/>
           <span class="name" :style="{fontSize: titleSize}" contenteditable="true">{{title}}</span>
         </div>
         <div class="button add" @click="add" :class="{ 'icon-margin-right': icon }">+</div>
       </div>
-      <!--TODO 尚未完成，添加功能还未完成-->
-      <ul v-if="infoItem && infoItem.length">
+      <ul v-if="currInfoItem && currInfoItem.length">
         <listControl
-          v-for="item in infoItem"
-          :key="item.key"
+          v-for="item in currInfoItem"
+          :key="item.id"
           :itemObj="item"
           :itemParentKey="parentId"
+          @changeItem="changeItem"
           @deleteItem="deleteItem"></listControl>
       </ul>
     </div>
@@ -22,8 +22,9 @@
 </template>
 
 <script>
-  import editImage from '@/components/common/edit-image';
-  import listControl from '@/components/common/list-control';
+  import editImage from '@/components/common/edit-image.vue';
+  import listControl from '@/components/common/list-control.vue';
+  import {HashGenerator} from '@/config/hashGenerator.js';
   export default {
     name: 'selfInfo',
     props: {
@@ -51,20 +52,63 @@
     },
     data () {
       return {
-        listControlState: false
+        listControlState: false,
+        currInfoItem: JSON.parse(JSON.stringify(this.infoItem))
       };
     },
     methods: {
-      returnImg (img) {},
-      add () {},
+      /**
+       * @param {Object} imgObj 返回的图片信息对象
+       * @description 获取修改的图片对象
+       * **/
+      returnImg (imgObj) {
+        this.sendParentData({key: this.parentId, data: imgObj.imgSrc, changeKey: 'icon'});
+      },
+      /**
+       * @param {Object} obj 被修改的数据
+       * @param {String=} parentKey 定义给父组件回调的方法名
+       * @description 触发父组件回调函数
+       * **/
+      sendParentData (obj, parentKey = 'changeInfoItem') {
+        this.$emit(parentKey, {...obj});
+      },
+      /**
+       * @description 数据添加函数
+       * **/
+      add () {
+        this.currInfoItem.push({
+          icon: require('@/assets/image/contact/contact-phone.png'),
+          value: '请填写',
+          id: new HashGenerator().getHashValue()
+        });
+        this.sendParentData({key: this.parentId, data: this.currInfoItem, changeKey: 'children'});
+      },
       // TODO: 后面需要存入vuex中
+      /**
+       * @param {Object} obj 选中的数据
+       * @description 删除指定数据
+       * **/
       deleteItem (obj) {
-        for (let a in this.infoItem) {
-          if (this.infoItem[a].id === obj.id) {
-            this.infoItem.splice(a, 1);
+        for (let a in this.currInfoItem) {
+          if (this.currInfoItem[a].id === obj.id) {
+            this.currInfoItem.splice(a, 1);
             break;
           }
         }
+        this.sendParentData({key: this.parentId, data: this.currInfoItem, changeKey: 'children'});
+      },
+      /**
+       * @param {Object} imgObj 返回的图片对象
+       * @description 修改当前item里的图片
+       * **/
+      changeItem (imgObj) {
+        for (let a in this.currInfoItem) {
+          if (this.currInfoItem[a].id === imgObj.id) {
+            this.currInfoItem[a].icon = imgObj.imgSrc;
+            break;
+          }
+        }
+        this.sendParentData({key: this.parentId, data: this.currInfoItem, changeKey: 'children'});
       }
     }
   };

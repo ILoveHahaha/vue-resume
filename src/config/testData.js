@@ -15,9 +15,9 @@ export default {
       id: 'CONTACT',
       icon: require('@/assets/image/contact/contact-title.png'),
       children: [
-        {icon: require('@/assets/image/contact/contact-phone.png'), key: 'phone', value: '1860***3412', id: new HashGenerator().getHashValue()},
-        {icon: require('@/assets/image/contact/contact-mail.png'), key: 'mail', value: 'luo_sj@163.com', id: new HashGenerator().getHashValue()},
-        {icon: require('@/assets/image/social/social-wechat.png'), key: 'wechat', value: 'lsj-weicinhao', id: new HashGenerator().getHashValue()}
+        {icon: require('@/assets/image/contact/contact-phone.png'), value: '1860***3412', id: new HashGenerator().getHashValue()},
+        {icon: require('@/assets/image/contact/contact-mail.png'), value: 'luo_sj@163.com', id: new HashGenerator().getHashValue()},
+        {icon: require('@/assets/image/social/social-wechat.png'), value: 'lsj-weicinhao', id: new HashGenerator().getHashValue()}
       ]
     },
     {
@@ -26,8 +26,8 @@ export default {
       id: 'SOCIAL',
       icon: require('@/assets/image/contact/contact-title.png'),
       children: [
-        {icon: require('@/assets/image/social/social-github.png'), key: 'github', value: 'github.com/luosijie', id: new HashGenerator().getHashValue()},
-        {icon: require('@/assets/image/social/social-dribbble.png'), key: 'dribbble', value: 'dribbble.com/luosj', id: new HashGenerator().getHashValue()}
+        {icon: require('@/assets/image/social/social-github.png'), value: 'github.com/luosijie', id: new HashGenerator().getHashValue()},
+        {icon: require('@/assets/image/social/social-dribbble.png'), value: 'dribbble.com/luosj', id: new HashGenerator().getHashValue()}
       ]
     },
     {
@@ -36,9 +36,9 @@ export default {
       id: 'SKILL',
       icon: require('@/assets/image/contact/contact-title.png'),
       children: [
-        {icon: require('@/assets/image/skill/skill-vue.png'), key: 'vue', value: 'Vue', id: new HashGenerator().getHashValue()},
-        {icon: require('@/assets/image/skill/skill-node.png'), key: 'node', value: 'Node', id: new HashGenerator().getHashValue()},
-        {icon: require('@/assets/image/skill/skill-mongo.png'), key: 'mongodb', value: 'MongoDB', id: new HashGenerator().getHashValue()}
+        {icon: require('@/assets/image/skill/skill-vue.png'), value: 'Vue', id: new HashGenerator().getHashValue()},
+        {icon: require('@/assets/image/skill/skill-node.png'), value: 'Node', id: new HashGenerator().getHashValue()},
+        {icon: require('@/assets/image/skill/skill-mongo.png'), value: 'MongoDB', id: new HashGenerator().getHashValue()}
       ]
     }
   ],

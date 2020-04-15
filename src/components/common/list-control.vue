@@ -2,7 +2,7 @@
   <div class="list-control-panel">
     <li class="list-item" @contextmenu.prevent="showControl" v-if="listItemStatus">
       <div class="list-item-info">
-        <editImage :src="itemObj.icon" class="img" height="18" width="18" @returnImg="returnImg"/>
+        <editImage :src="itemObj.icon" :curComId="itemObj.id" class="img" height="18" width="18" @returnImg="returnImg"/>
         <span contenteditable="true">{{ itemObj.value }}</span>
       </div>
       <div v-if="listControlStatus" class="list-control">
@@ -33,14 +33,29 @@ export default {
     }
   },
   methods: {
-    returnImg (img) {},
+    /**
+     * @param {Object} imgObj 返回的图片信息对象
+     * @description 获取修改的图片对象
+     * **/
+    returnImg (imgObj) {
+      this.$emit('changeItem', imgObj);
+    },
+    /**
+     * @description 取消按钮函数
+     * **/
     cancelControl () {
       this.listControlStatus = false;
     },
+    /**
+     * @description 删除按钮函数
+     * **/
     deleteControl () {
       this.$emit('deleteItem', this.itemObj);
       this.listItemStatus = false;
     },
+    /**
+     * @description 展示按钮函数
+     * **/
     showControl () {
       this.listControlStatus = true;
     }

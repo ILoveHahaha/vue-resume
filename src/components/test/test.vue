@@ -7,7 +7,8 @@
       :icon="item.icon"
       title-size="14px"
       :title="item.name"
-      :infoItem="item.children">
+      :infoItem="item.children"
+      @changeInfoItem="changeInfoItem">
     </selfInfo>
   </div>
 </template>
@@ -26,7 +27,24 @@ export default {
   components: {
     selfInfo
   },
-  methods: {},
+  methods: {
+    /**
+     * @param {Object} data 要修改的数据
+     * @description 修改原数组的值函数
+     * **/
+    changeInfoItem (data) {
+      for (let a in this.selfInfoData) {
+        if (this.selfInfoData[a].id === data.key) {
+          if (data.changeKey === 'children') {
+            this.selfInfoData[a].children = JSON.parse(JSON.stringify(data.data));
+          } else {
+            this.selfInfoData[a][data.changeKey] = data.data;
+          }
+          break;
+        }
+      }
+    }
+  },
   mounted () {
   }
 };
