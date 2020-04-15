@@ -3,6 +3,7 @@
     <selfInfo
       v-for="item in selfInfoData"
       :key="item.id"
+      :parentId="item.id"
       :icon="item.icon"
       title-size="14px"
       :title="item.name"
@@ -27,7 +28,6 @@ export default {
   },
   methods: {},
   mounted () {
-    console.log(this.selfInfoData);
   }
 };
 </script>

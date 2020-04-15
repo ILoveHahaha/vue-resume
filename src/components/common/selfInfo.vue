@@ -8,15 +8,14 @@
         </div>
         <div class="button add" @click="add" :class="{ 'icon-margin-right': icon }">+</div>
       </div>
-      <!--TODO 尚未完成，该功能主要用来展示用户个人信息-->
-      <ul>
-        <li class="list-item" @contextmenu.prevent="showControl" v-if="listItem">
-          <div class="list-item-info">
-            <editImage :src="image" class="img" height="18" width="18" @returnImg="returnImg"/>
-            <span contenteditable="true">{{ title }}</span>
-          </div>
-          <listControl></listControl>
-        </li>
+      <!--TODO 尚未完成，添加功能还未完成-->
+      <ul v-if="infoItem && infoItem.length">
+        <listControl
+          v-for="item in infoItem"
+          :key="item.key"
+          :itemObj="item"
+          :itemParentKey="parentId"
+          @deleteItem="deleteItem"></listControl>
       </ul>
     </div>
   </div>
@@ -24,7 +23,7 @@
 
 <script>
   import editImage from '@/components/common/edit-image';
-  import listControl from '@/components/common/list-control'
+  import listControl from '@/components/common/list-control';
   export default {
     name: 'selfInfo',
     props: {
@@ -40,17 +39,32 @@
       icon: {
         type: String,
         default: ''
+      },
+      parentId: {
+        type: String,
+        default: ''
       }
     },
     components: {
       editImage,
       listControl
     },
+    data () {
+      return {
+        listControlState: false
+      };
+    },
     methods: {
       returnImg (img) {},
       add () {},
-      showControl () {
-        this.listControl = true;
+      // TODO: 后面需要存入vuex中
+      deleteItem (obj) {
+        for (let a in this.infoItem) {
+          if (this.infoItem[a].id === obj.id) {
+            this.infoItem.splice(a, 1);
+            break;
+          }
+        }
       }
     }
   };

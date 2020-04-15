@@ -80,3 +80,7 @@ export class HashGenerator {
     return this.hashValue;
   }
 }
+
+// let test = new HashGenerator()
+// let a = test.getHashValue()
+// console.log(a)
