@@ -1,12 +1,13 @@
 import {HashGenerator} from '@/config/hashGenerator.js';
 export default {
-  Brief: {
+  brief: {
     name: 'Abson Wong',
     position: 'web前端工程师',
     location: '广东广州',
     experience: '三年',
     age: 24,
-    degree: '本科'
+    degree: '本科',
+    icon: require('@/assets/image/other/logo_name.png')
   },
   selfInfo: [
     {
@@ -42,92 +43,128 @@ export default {
       ]
     }
   ],
-  AboutMe: `
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
-        libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
-        sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
-        Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
-        vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
-        gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
-        lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
-        In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
-        magna est finibus tortor, ultricies accumsan diam lorem non neque.
-    `,
-  Education: [
-    {school: 'Minjiang University', major: 'History', date: '2011.9-2015.6', description: ''}
-  ],
-  WorkingExperience: [
+  selfContent: [
     {
-      company: 'Google',
-      position: 'UI designer',
-      date: '2015.1-2016.3',
-      description: `
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
-                libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
-                sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
-                Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
-                vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
-                gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
-                lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
-                In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
-                magna est finibus tortor, ultricies accumsan diam lorem non neque.
-            `
+      title: '关于我',
+      id: new HashGenerator().getHashValue(),
+      children: [
+        {
+          id: new HashGenerator().getHashValue(),
+          firstParam: '',
+          secondParam: '',
+          thirdParam: '',
+          content: `
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
+            libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
+            sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
+            Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
+            vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
+            gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
+            lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
+            In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
+            magna est finibus tortor, ultricies accumsan diam lorem non neque.
+          `,
+          paramStatus: false,
+          contentStatus: true
+        }
+      ]
     },
     {
-      company: 'Facebook',
-      position: 'UI designer',
-      date: '2015.1-2016.3',
-      description: `
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
-                libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
-                sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
-                Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
-                vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
-                gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
-                lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
-                In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
-                magna est finibus tortor, ultricies accumsan diam lorem non neque.
-            `
+      title: '教育',
+      id: new HashGenerator().getHashValue(),
+      children: [
+        {
+          id: new HashGenerator().getHashValue(),
+          firstParam: 'Minjiang University',
+          secondParam: 'History',
+          thirdParam: '2011.9-2015.6',
+          content: '',
+          paramStatus: true,
+          contentStatus: false
+        }
+      ]
     },
     {
-      company: 'Airbnb',
-      position: 'UI designer',
-      date: '2015.1-2016.3',
-      description: `
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
-                libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
-                sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
-                Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
-                vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
-                gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
-                lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
-                In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
-                magna est finibus tortor, ultricies accumsan diam lorem non neque.
-            `
-    },
-    {
-      company: 'Twitter',
-      position: 'UI designer',
-      date: '2015.1-2016.3',
-      description: `
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
-                libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
-                sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
-                Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
-                vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
-                gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
-                lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
-                In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
-                magna est finibus tortor, ultricies accumsan diam lorem non neque.
-            `
+      title: '工作经验',
+      id: new HashGenerator().getHashValue(),
+      children: [
+        {
+          id: new HashGenerator().getHashValue(),
+          firstParam: 'Google',
+          secondParam: 'UI designer',
+          thirdParam: '2015.1-2016.3',
+          content: `
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
+            libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
+            sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
+            Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
+            vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
+            gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
+            lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
+            In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
+            magna est finibus tortor, ultricies accumsan diam lorem non neque.
+          `,
+          paramStatus: true,
+          contentStatus: true
+        },
+        {
+          id: new HashGenerator().getHashValue(),
+          firstParam: 'Facebook',
+          secondParam: 'UI designer',
+          thirdParam: '2015.1-2016.3',
+          content: `
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
+            libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
+            sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
+            Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
+            vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
+            gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
+            lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
+            In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
+            magna est finibus tortor, ultricies accumsan diam lorem non neque.
+          `,
+          paramStatus: true,
+          contentStatus: true
+        },
+        {
+          id: new HashGenerator().getHashValue(),
+          firstParam: 'Airbnb',
+          secondParam: 'UI designer',
+          thirdParam: '2015.1-2016.3',
+          content: `
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
+            libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
+            sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
+            Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
+            vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
+            gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
+            lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
+            In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
+            magna est finibus tortor, ultricies accumsan diam lorem non neque.
+          `,
+          paramStatus: true,
+          contentStatus: true
+        },
+        {
+          id: new HashGenerator().getHashValue(),
+          firstParam: 'Twitter',
+          secondParam: 'UI designer',
+          thirdParam: '2015.1-2016.3',
+          content: `
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit metus in 
+            libero rutrum congue aliquam eu libero. Donec tristique est pharetra fringilla 
+            sollicitudin. Etiam eu ipsum vitae nulla tincidunt scelerisque semper id arcu. 
+            Phasellus quam tellus, laoreet id felis a, dignissim facilisis orci. Mauris feugiat 
+            vulputate quam quis tincidunt. In eleifend augue eu tristique bibendum. Donec 
+            gravida, eros sed iaculis iaculis, magna est finibus tortor, ultricies accumsan diam 
+            lorem non neque. sim facilisis orci. Mauris feugiat vulputate quam quis tincidunt. 
+            In eleifend augue eu tristique bibendum. Donec gravida, eros sed iaculis iaculis, 
+            magna est finibus tortor, ultricies accumsan diam lorem non neque.
+          `,
+          paramStatus: true,
+          contentStatus: true
+        }
+      ]
     }
-  ],
-  titleName: [
-    ['CONTACT', '联系方式'],
-    ['SOCIAL', '作品地址'],
-    ['Skill', '技能'],
-    ['About me', '关于我'],
-    ['Education', '教育'],
-    ['Working Experience', '工作经验']
   ]
 };

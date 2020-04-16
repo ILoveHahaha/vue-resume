@@ -1,4 +1,5 @@
 <template>
+  <!--TODO 这里写法多此一举，明明可以通过对原数组进行操作,并不需要v-if-->
   <div class="list-control-panel">
     <li class="list-item" @contextmenu.prevent="showControl" v-if="listItemStatus">
       <div class="list-item-info">

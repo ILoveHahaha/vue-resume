@@ -3,7 +3,7 @@
   <div class="brief">
     <div class="avatar">
       <EditImage
-        :src="require('@/assets/image/other/logo_name.png')"
+        :src="data.icon"
         width="100"
         height="100"
         :isCircle="true"
@@ -46,19 +46,27 @@
     props: {
       data: {
         type: Object,
-        default: () => {
-        }
+        default: () => {}
       }
     },
     components: {
       EditImage
     },
     methods: {
+      /**
+       * @param {String} key 要修改的字段
+       * @param {Event} e 要修改的元素
+       * @description 修改值函数
+       * **/
       contentChange (key, e) {
         this.data[key] = e.target.innerText;
-        console.log('brief-change', this.data);
       },
+      /**
+       * @param {Object} img 返回的图片信息对象
+       * @description 获取修改的图片对象
+       * **/
       returnImg (img) {
+        this.$emit('changeBrief', img);
       }
     }
   };
