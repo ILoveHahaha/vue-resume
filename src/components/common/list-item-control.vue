@@ -61,7 +61,8 @@ export default {
           ]}
         ]
       },
-      currMenu: []
+      currMenu: [],
+      currDataObj: {}
     };
   },
   methods: {
@@ -71,6 +72,12 @@ export default {
     addControl () {
       this.currMenu = this.menuPanel.children[0].addControl;
     },
+    addTitleControl () {},
+    addContentControl () {},
+    addAllControl () {},
+    removeTitleControl () {},
+    removeContentControl () {},
+    removeAllControl () {},
     deleteControl () {
       this.currMenu = this.menuPanel.children[1].deleteControl;
     },
@@ -91,6 +98,8 @@ export default {
     }
   },
   created () {
+    this.currDataObj = this.data;
+    console.log(this.currDataObj);
     this.backControl();
   },
   mounted () {}
