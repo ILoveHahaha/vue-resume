@@ -14,7 +14,13 @@
       </selfInfo>
     </div>
     <div class="right">
-      <listItemContent v-for="item in contentInfoData" :key="item.id" :title="item.title" :data="item"></listItemContent>
+      <listItemContent
+        v-for="item in contentInfoData"
+        :key="item.id"
+        :title="item.title"
+        :data="item"
+        :id="item.id"
+        @changeChildArr="changeChildArr"></listItemContent>
     </div>
   </div>
 </template>
@@ -61,6 +67,18 @@ export default {
      * **/
     changeBrief (obj) {
       this.briefData.icon = obj.imgSrc;
+    },
+    // TODO: 有bug
+    changeChildArr (obj) {
+      console.log(obj);
+      if (obj.childObj) {
+        for (let a of this.contentInfoData) {
+          if (a.id === obj.id) {
+            this.$set(this.contentInfoData, 'children', [...this.contentInfoData.children, obj.childObj]);
+          }
+        }
+        console.log(this.contentInfoData);
+      } else {}
     }
   },
   mounted () {
