@@ -1,10 +1,17 @@
 <template>
   <div class="list-item-content">
     <div class="context-list">
-      <div class="list-heading">
+      <div class="list-heading" @contextmenu.prevent="showControl">
         <div class="title">
           <span class="name" :style="{fontSize: titleSize}" contenteditable="true">{{title}}</span>
         </div>
+        <!--<listItemMenu-->
+          <!--v-if="listControlStatus"-->
+          <!--v-model="listControlStatus"-->
+          <!--:currDataObj="currDataObj"-->
+          <!--@changeObj="changeDataObj"-->
+          <!--:menus="menus"-->
+          <!--ref="listItemMenus"></listItemMenu>-->
       </div>
       <ul class="list-item-ul">
         <listItemControl v-for="item in data.children" :key="item.key" :data="item"></listItemControl>
@@ -14,16 +21,19 @@
 </template>
 
 <script>
+import listItemMenu from '@/components/common/list-item-menu.vue';
 import listItemControl from '@/components/common/list-item-control.vue';
 export default {
   name: 'list-item-content',
   data () {
     return {
-      listItemStatus: true
+      listItemStatus: true,
+      listControlStatus: false
     };
   },
   components: {
-    listItemControl
+    listItemControl,
+    listItemMenu
   },
   props: {
     titleSize: {
@@ -40,8 +50,15 @@ export default {
     }
   },
   methods: {
+    showControl () {
+      this.listControlStatus = true;
+      this.$nextTick(() => {
+        this.$refs.listItemMenus.$el.focus();
+      });
+    }
   },
   mounted () {
+    console.log(this.data);
   }
 };
 </script>
@@ -53,6 +70,7 @@ export default {
     margin-bottom: 0px;
 
     .list-heading {
+      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;

@@ -18,6 +18,7 @@
       v-model="listControlStatus"
       :currDataObj="currDataObj"
       @changeObj="changeDataObj"
+      :menus="menus"
       ref="listItemMenus"></listItemMenu>
   </li>
 </template>
@@ -39,7 +40,8 @@ export default {
   data () {
     return {
       listControlStatus: false,
-      currDataObj: {}
+      currDataObj: {},
+      menus: ['addTitleControl', 'addContentControl', 'removeTitleControl', 'removeContentControl', 'cancelControl']
     };
   },
   components: {
@@ -57,18 +59,10 @@ export default {
     },
     changeDataObj (obj) {
       console.log(obj, this.currDataObj);
-      if (!obj.id) {
-        this.$emit('changeChildArr', {
-          id: this.id,
-          childObj: null
-        });
-      } else if (obj.id === this.currDataObj.id) {
+      if (obj.id === this.currDataObj.id) {
         this.currDataObj = JSON.parse(JSON.stringify(obj));
       } else {
-        this.$emit('changeChildArr', {
-          id: this.id,
-          childObj: obj
-        });
+        console.log(obj);
       }
     }
   },

@@ -19,33 +19,24 @@ export default {
     },
     currDataObj: {
       type: Object
+    },
+    menus: {
+      type: Array,
+      default: ['addAllControl', 'removeAllControl', 'cancelControl']
     }
   },
   data () {
     return {
-      menuPanel: {
-        funcMenu: [
-          {funcName: 'addControl', iconStyle: 'add-icon', title: '添加功能'},
-          {funcName: 'deleteControl', iconStyle: 'delete-icon', title: '删除功能'},
-          {funcName: 'cancelControl', iconStyle: 'cancel-icon', title: '取消'}
-        ],
-        children: [
-          {addControl: [
-            {funcName: 'addTitleControl', iconStyle: 'add-icon', title: '添加栏目'},
-            {funcName: 'addContentControl', iconStyle: 'add-icon', title: '添加内容区'},
-            {funcName: 'addAllControl', iconStyle: 'add-icon', title: '添加栏目和内容区'},
-            {funcName: 'backControl', iconStyle: 'back-icon', title: '返回上一级'},
-            {funcName: 'cancelControl', iconStyle: 'cancel-icon', title: '取消'}
-          ]},
-          {deleteControl: [
-            {funcName: 'removeTitleControl', iconStyle: 'delete-icon', title: '删除栏目'},
-            {funcName: 'removeContentControl', iconStyle: 'delete-icon', title: '删除内容区'},
-            {funcName: 'removeAllControl', iconStyle: 'delete-icon', title: '删除栏目和内容区'},
-            {funcName: 'backControl', iconStyle: 'back-icon', title: '返回上一级'},
-            {funcName: 'cancelControl', iconStyle: 'cancel-icon', title: '取消'}
-          ]}
-        ]
-      },
+      menuPanel: [
+        {funcName: 'addTitleControl', iconStyle: 'add-icon', title: '添加栏目'},
+        {funcName: 'addContentControl', iconStyle: 'add-icon', title: '添加内容区'},
+        {funcName: 'addAllControl', iconStyle: 'add-icon', title: '添加栏目和内容区'},
+        {funcName: 'removeTitleControl', iconStyle: 'delete-icon', title: '删除栏目'},
+        {funcName: 'removeContentControl', iconStyle: 'delete-icon', title: '删除内容区'},
+        {funcName: 'removeAllControl', iconStyle: 'delete-icon', title: '删除栏目和内容区'},
+        {funcName: 'backControl', iconStyle: 'back-icon', title: '返回上一级'},
+        {funcName: 'cancelControl', iconStyle: 'cancel-icon', title: '取消'}
+      ],
       currMenu: [],
       tempObj: {},
       newObj: {
@@ -62,9 +53,6 @@ export default {
   methods: {
     runFunc (funcName) {
       this[funcName]();
-    },
-    addControl () {
-      this.currMenu = this.menuPanel.children[0].addControl;
     },
     addTitleControl () {
       if (this.tempObj.paramStatus) {} else {
@@ -100,20 +88,22 @@ export default {
     sendDataObj (obj) {
       this.$emit('changeObj', obj);
     },
-    deleteControl () {
-      this.currMenu = this.menuPanel.children[1].deleteControl;
-    },
     backControl () {
-      this.currMenu = this.menuPanel.funcMenu;
     },
     cancelControl () {
       this.$emit('input', false);
       // this.listControlStatus = false;
+    },
+    initMenus () {
+      this.currMenu = this.menuPanel.filter(value => {
+        return this.menus.includes(value.funcName);
+      });
     }
   },
   created () {
     this.tempObj = JSON.parse(JSON.stringify(this.currDataObj));
-    this.backControl();
+    this.initMenus();
+    // this.backControl();
   }
 };
 </script>
