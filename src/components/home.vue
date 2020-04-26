@@ -2,151 +2,185 @@
   <div class="home">
     <div class="resume">
       <div class="left">
-        <Brief :data="defaultData.Brief"/>
-        <ContextList
-          :title="defaultTitle.get('CONTACT')"
+        <brief :data="briefData" @changeBrief="changeBrief"></brief>
+        <selfInfo
+          v-for="item in selfInfoData"
+          :key="item.id"
+          :parentId="item.id"
+          :icon="item.icon"
           title-size="14px"
-          :icon="require('@/assets/image/contact/contact-title.png')">
-          <ListItemInfo
-            :title="item.value"
-            :image="item.icon"
-            slot="listItem"
-            v-for="item in defaultData.Contact"
-            :key="item.key"
-          />
-        </ContextList>
-        <ContextList
-          :title="defaultTitle.get('SOCIAL')"
-          title-size="14px"
-          :icon="require('@/assets/image/contact/contact-title.png')">
-          <ListItemInfo
-            :title="item.value"
-            :image="item.icon"
-            slot="listItem"
-            v-for="item in defaultData.Social"
-            :key="item.key"
-          />
-        </ContextList>
-        <ContextList
-          :title="defaultTitle.get('Skill')"
-          title-size="14px"
-          :icon="require('@/assets/image/contact/contact-title.png')">
-          <ListItemInfo
-            :title="item.value"
-            :image="item.icon"
-            slot="listItem"
-            v-for="item in defaultData.Skill"
-            :key="item.key"
-          />
-        </ContextList>
+          :title="item.name"
+          :infoItem="item.children"
+          @changeInfoItem="changeInfoItem">
+        </selfInfo>
       </div>
       <div class="right">
-        <ContextList :title="defaultTitle.get('About me')">
-          <ListItemAbout slot="listItem" :data="defaultData.AboutMe"/>
-        </ContextList>
-        <ContextList :title="defaultTitle.get('Education')">
-          <ListItemEducation
-            slot="listItem"
-            :data="item"
-            v-for="item in defaultData.Education"
-            :key="item.school"/>
-        </ContextList>
-        <ContextList :title="defaultTitle.get('Working Experience')">
-          <ListItemExperience
-            slot="listItem"
-            v-for="item in defaultData.WorkingExperience"
-            :data="item"
-            :key="item.compony"/>
-        </ContextList>
+        <listItemContent
+          v-for="item in contentInfoData"
+          :key="item.id"
+          :title="item.title"
+          :data="item"
+          :id="item.id"
+          @changeChildArr="changeChildArr"></listItemContent>
       </div>
     </div>
-    <Guide/>
-    <!--TODO 后面搞成一个分享功能，如果是微信用户则分享的是小程序-->
+    <Guide></Guide>
     <div class="actions">
-      <button @click="saveAsImage">Save as PNG</button>
+      <button @click="saveAsImage">Save as Image</button>
       <button @click="saveAsPdf">Save as PDF</button>
       <button @click="print">Print</button>
       <button @click="saveResume">Save</button>
     </div>
-    <!--TODO 这里要修改成自己的个人博客-->
     <div class="footer">
-      <a href="https://github.com/luosijie/vue-resume" target="_blank">
-        <img src="../assets/image/social/social-github.png" height="36" width="36" alt>
+      <a href="https://github.com/ILoveHahaha/vue-resume" target="_blank">
+        <img src="~@/assets/image/social/social-github.png" height="36" width="36" alt>
       </a>
-      vue-resume designed by
+      ResumeGenerator designed by
+      <a href="https://github.com/ILoveHahaha">Abson Wong</a>
+      , learned from
       <a href="https://github.com/luosijie">Jesse Luo</a>
     </div>
   </div>
 </template>
 
 <script>
-  import ContextList from '@/components/common/context-list';
-  import ListItemAbout from '@/components/list-item-about';
-  import ListItemSkill from '@/components/list-item-skill';
-  import ListItemEducation from '@/components/list-item-education';
-  import ListItemExperience from '@/components/list-item-experience';
-  import ListItemInfo from '@/components/common/list-item-info';
-  import html2canvas from '@/assets/js/html2canvas.js';
+  import brief from '@/components/brief.vue';
+  import selfInfo from '@/components/common/selfInfo.vue';
+  import listItemContent from '@/components/common/list-item-content.vue';
+  import testData from '@/config/testData.js';
   import FileSaver from 'file-saver';
-  import Brief from '@/components/brief';
   import Guide from '@/components/guide';
-  // import GeneratePDF from '@/utils/generatePDF';
-  import defaultData from '@/config/data';
-
   export default {
     name: 'home',
+    data () {
+      return {
+        briefData: testData.brief,
+        selfInfoData: testData.selfInfo,
+        contentInfoData: testData.selfContent
+      };
+    },
     components: {
-      ContextList,
-      ListItemAbout,
-      ListItemSkill,
-      ListItemEducation,
-      ListItemExperience,
-      ListItemInfo,
-      Brief,
+      brief,
+      selfInfo,
+      listItemContent,
       Guide
     },
-    computed: {
-      defaultData () {
-        return defaultData;
-      },
-      defaultTitle () {
-        return new Map(defaultData.titleName);
-      }
-    },
     methods: {
-      saveAsPdf () {
-        // const resume = document.querySelector('.resume');
-        // const pdf = new GeneratePDF(resume);
-        // pdf.generate();
+      /**
+       * @param {Object} data 要修改的数据
+       * @description 修改原数组的值函数
+       * **/
+      changeInfoItem (data) {
+        for (let a in this.selfInfoData) {
+          if (this.selfInfoData[a].id === data.key) {
+            if (data.changeKey === 'children') {
+              this.selfInfoData[a].children = JSON.parse(JSON.stringify(data.data));
+            } else {
+              this.selfInfoData[a][data.changeKey] = data.data;
+            }
+            break;
+          }
+        }
+      },
+      /**
+       * @param {Object} obj 要修改的头像数据
+       * @description 修改头像函数
+       * **/
+      changeBrief (obj) {
+        this.briefData.icon = obj.imgSrc;
+      },
+      changeChildArr (obj) {
+        if (obj.childObj) {
+          for (let a of this.contentInfoData) {
+            if (a.id === obj.id) {
+              this.$set(this.contentInfoData, 'children', [...this.contentInfoData.children, obj.childObj]);
+            }
+          }
+        } else if (obj.type === 'add') {
+          for (let a of this.contentInfoData) {
+            if (a.id === obj.id) {
+              a.children.push(obj.obj);
+              break;
+            }
+          }
+        }
       },
       saveAsImage () {
         let resume = document.querySelector('.resume');
-        html2canvas(resume).then(canvas => {
+        /**
+         * scale官方文档上的解释是The scale to use for rendering. Defaults to the browsers device pixel ratio.
+         * 默认值读的是window.devicePixelRatio，可以通过传值来控制清晰度
+         * **/
+        this.$html2canvas(resume, {
+          scale: 3
+        }).then(canvas => {
           canvas.toBlob(blob => {
-            FileSaver.saveAs(blob, 'Resume.png');
+            FileSaver.saveAs(blob, 'myResume.png');
           });
         });
       },
-      print () {
-        window.print();
+      saveAsPdf () {
+        this.$html2canvas(document.querySelector('.resume'), {
+          scale: 3, // 导出pdf清晰度
+          // 背景设为白色（默认为黑色）
+          background: '#fff'
+        }).then(canvas => {
+          let contentWidth = canvas.width;
+          let contentHeight = canvas.height;
+
+          // 一页pdf显示html页面生成的canvas高度;
+          let pageHeight = contentWidth / 592.28 * 841.89;
+          // 未生成pdf的html页面高度
+          let leftHeight = contentHeight;
+          // pdf页面偏移
+          let position = 0;
+          // html页面生成的canvas在pdf中图片的宽高（a4纸的尺寸[595.28,841.89]）
+          let imgWidth = 595.28;
+          let imgHeight = 592.28 / contentWidth * contentHeight;
+
+          let pageData = canvas.toDataURL('image/jpeg', 1.0);
+          let pdf = new this.$jsPdf('', 'pt', 'a4');
+
+          // 有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
+          // 当内容未超过pdf一页显示的范围，无需分页
+          if (leftHeight < pageHeight) {
+            pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
+          } else {
+            while (leftHeight > 0) {
+              pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight);
+              leftHeight -= pageHeight;
+              position -= 841.89;
+              // 避免添加空白页
+              if (leftHeight > 0) {
+                pdf.addPage();
+              }
+            }
+          }
+          pdf.save('content.pdf');
+        });
       },
-      saveResume () {}
+      // TODO: 打印这里需要获取dom tree和cssStyleList，然后构成一个渲染树出来进行打印
+      print () {
+      },
+      saveResume () {
+        alert('this function is doing');
+      }
+    },
+    mounted () {
     }
   };
 </script>
 
 <style lang="less" scoped>
-  .home {
-    .resume {
+  .home{
+    .resume{
       margin-top: 40px;
       position: relative;
       width: 790px;
-      // height: 1754px;
       border: 1px solid #dad8d7;
       background-color: white;
       overflow: hidden;
       box-sizing: border-box;
-
       .left {
         width: 240px;
         height: 100%;
@@ -171,7 +205,6 @@
         }
       }
     }
-
     .actions {
       position: absolute;
       top: 40px;
@@ -191,7 +224,6 @@
         }
       }
     }
-
     .footer {
       line-height: 50px;
 

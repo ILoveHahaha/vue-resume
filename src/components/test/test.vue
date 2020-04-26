@@ -24,11 +24,21 @@
           @changeChildArr="changeChildArr"></listItemContent>
       </div>
     </div>
+    <Guide></Guide>
     <div class="actions">
       <button @click="saveAsImage">Save as Image</button>
       <button @click="saveAsPdf">Save as PDF</button>
       <button @click="print">Print</button>
       <button @click="saveResume">Save</button>
+    </div>
+    <div class="footer">
+      <a href="https://github.com/ILoveHahaha/vue-resume" target="_blank">
+        <img src="~@/assets/image/social/social-github.png" height="36" width="36" alt>
+      </a>
+      ResumeGenerator designed by
+      <a href="https://github.com/ILoveHahaha">Abson Wong</a>
+      , learned from
+      <a href="https://github.com/luosijie">Jesse Luo</a>
     </div>
   </div>
 </template>
@@ -39,6 +49,7 @@ import selfInfo from '@/components/common/selfInfo.vue';
 import listItemContent from '@/components/common/list-item-content.vue';
 import testData from '@/config/testData.js';
 import FileSaver from 'file-saver';
+import Guide from '@/components/guide';
 export default {
   name: 'test',
   data () {
@@ -51,7 +62,8 @@ export default {
   components: {
     brief,
     selfInfo,
-    listItemContent
+    listItemContent,
+    Guide
   },
   methods: {
     /**
@@ -162,7 +174,7 @@ export default {
 <style lang="less" scoped>
 .test{
   .resume{
-    margin: 40px 0;
+    margin-top: 40px;
     position: relative;
     width: 790px;
     border: 1px solid #dad8d7;
@@ -209,6 +221,21 @@ export default {
       cursor: pointer;
       &:hover {
         background-color: #f8f8f8;
+      }
+    }
+  }
+  .footer {
+    line-height: 50px;
+
+    a {
+      text-decoration: none;
+      color: #4aa74f;
+
+      &:first-child {
+        display: block;
+        text-align: center;
+        line-height: 0;
+        margin-top: 15px;
       }
     }
   }

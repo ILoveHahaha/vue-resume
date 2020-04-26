@@ -77,11 +77,9 @@ export default {
       } else {
         throw new Error('return a error param');
       }
-      console.log(obj, this.data);
     }
   },
   mounted () {
-    console.log(this.data);
   }
 };
 </script>
