@@ -61,6 +61,7 @@
       </div>
     </div>
     <Guide/>
+    <!--TODO 后面搞成一个分享功能，如果是微信用户则分享的是小程序-->
     <div class="actions">
       <button @click="saveAsImage">Save as PNG</button>
       <button @click="saveAsPdf">Save as PDF</button>

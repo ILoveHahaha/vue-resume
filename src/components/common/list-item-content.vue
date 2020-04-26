@@ -5,13 +5,12 @@
         <div class="title">
           <span class="name" :style="{fontSize: titleSize}" contenteditable="true">{{title}}</span>
         </div>
-        <!--<listItemMenu-->
-          <!--v-if="listControlStatus"-->
-          <!--v-model="listControlStatus"-->
-          <!--:currDataObj="currDataObj"-->
-          <!--@changeObj="changeDataObj"-->
-          <!--:menus="menus"-->
-          <!--ref="listItemMenus"></listItemMenu>-->
+        <listItemMenu
+          v-if="listControlStatus"
+          v-model="listControlStatus"
+          @changeObj="changeDataObj"
+          :menus="menus"
+          ref="listItemMenus"></listItemMenu>
       </div>
       <ul class="list-item-ul">
         <listItemControl v-for="item in data.children" :key="item.key" :data="item"></listItemControl>
@@ -28,7 +27,8 @@ export default {
   data () {
     return {
       listItemStatus: true,
-      listControlStatus: false
+      listControlStatus: false,
+      menus: ['addAllControl', 'removeAllControl', 'backControl', 'cancelControl']
     };
   },
   components: {
@@ -47,6 +47,10 @@ export default {
     data: {
       type: Object,
       default: {}
+    },
+    id: {
+      type: String,
+      default: ''
     }
   },
   methods: {
@@ -55,6 +59,25 @@ export default {
       this.$nextTick(() => {
         this.$refs.listItemMenus.$el.focus();
       });
+    },
+    changeDataObj (obj) {
+      if (typeof obj === 'object') {
+        if (obj.id) {
+          this.$emit('changeChildArr', {
+            type: 'add',
+            id: this.id,
+            obj: obj
+          });
+        } else {
+          this.$emit('changeChildArr', {
+            type: 'delete',
+            id: this.id
+          });
+        }
+      } else {
+        throw new Error('return a error param');
+      }
+      console.log(obj, this.data);
     }
   },
   mounted () {

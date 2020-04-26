@@ -1,18 +1,17 @@
 <template>
-  <!--TODO 功能未完成-->
   <li class="list-item" @contextmenu.prevent="showControl">
     <div class="heading" v-if="currDataObj.paramStatus">
       <div class="firstParam">
-        <span contenteditable="true" v-html="currDataObj.firstParam"></span>
+        <span contenteditable="true" v-html="currDataObj.firstParam || 'Your info'"></span>
       </div>
       <div class="secondParam">
-        <span contenteditable="true" v-html="currDataObj.secondParam"></span>
+        <span contenteditable="true" v-html="currDataObj.secondParam || 'Your info'"></span>
       </div>
       <div class="thirdParam">
-        <span contenteditable="true" v-html="currDataObj.thirdParam"></span>
+        <span contenteditable="true" v-html="currDataObj.thirdParam || 'Your info'"></span>
       </div>
     </div>
-    <p contenteditable="true" v-html="currDataObj.content" v-if="currDataObj.contentStatus"></p>
+    <p contenteditable="true" v-html="currDataObj.content || 'Your info'" v-if="currDataObj.contentStatus"></p>
     <listItemMenu
       v-if="listControlStatus"
       v-model="listControlStatus"
@@ -58,7 +57,6 @@ export default {
       });
     },
     changeDataObj (obj) {
-      console.log(obj, this.currDataObj);
       if (obj.id === this.currDataObj.id) {
         this.currDataObj = JSON.parse(JSON.stringify(obj));
       } else {
@@ -77,6 +75,7 @@ export default {
 .list-item{
   position: relative;
   .heading {
+    height: 16px;
     font-size: 14px;
     font-weight: bold;
     display: flex;

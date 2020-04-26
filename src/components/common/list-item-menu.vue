@@ -18,7 +18,10 @@ export default {
       type: Boolean
     },
     currDataObj: {
-      type: Object
+      type: Object,
+      default: () => {
+        return {};
+      }
     },
     menus: {
       type: Array,
@@ -44,7 +47,7 @@ export default {
         contentStatus: true,
         firstParam: '',
         id: '',
-        paramStatus: false,
+        paramStatus: true,
         secondParam: '',
         thirdParam: ''
       }
