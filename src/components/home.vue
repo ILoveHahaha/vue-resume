@@ -196,13 +196,6 @@
         float: left;
         padding: 25px 20px;
         border-left: 1px solid #dad8d7;
-
-        p {
-          font-size: 14px;
-          line-height: 18px;
-          color: #555;
-          text-align: justify;
-        }
       }
     }
     .actions {

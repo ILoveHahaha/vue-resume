@@ -74,6 +74,12 @@ export default {
 <style lang="less" scoped>
 .list-item{
   position: relative;
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    color: #555;
+    text-align: justify;
+  }
   .heading {
     height: 16px;
     font-size: 14px;
