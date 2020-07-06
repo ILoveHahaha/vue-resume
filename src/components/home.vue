@@ -135,7 +135,7 @@
           // pdf页面偏移
           let position = 0;
           // html页面生成的canvas在pdf中图片的宽高（a4纸的尺寸[595.28,841.89]）
-          let imgWidth = 595.28;
+          let imgWidth = 590.28;
           let imgHeight = 592.28 / contentWidth * contentHeight;
 
           let pageData = canvas.toDataURL('image/jpeg', 1.0);
@@ -144,7 +144,7 @@
           // 有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
           // 当内容未超过pdf一页显示的范围，无需分页
           if (leftHeight < pageHeight) {
-            pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
+            pdf.addImage(pageData, 'JPEG', -5, 0, imgWidth, imgHeight);
           } else {
             while (leftHeight > 0) {
               pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight);
