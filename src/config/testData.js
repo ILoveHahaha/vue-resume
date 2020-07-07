@@ -28,7 +28,7 @@ export default {
       icon: require('@/assets/image/contact/contact-title.png'),
       children: [
         {icon: require('@/assets/image/social/social-github.png'), value: 'https://github.com/ILoveHahaha', id: new HashGenerator().getHashValue()},
-        {icon: 'https://csdnimg.cn/public/favicon.ico', value: 'blog.csdn.net/Tank_in_the_street', id: new HashGenerator().getHashValue()}
+        {icon: require('@/assets/image/social/csdn.jpg'), value: 'blog.csdn.net/Tank_in_the_street', id: new HashGenerator().getHashValue()}
       ]
     },
     {
@@ -39,8 +39,9 @@ export default {
       children: [
         {icon: require('@/assets/image/skill/skill-vue.png'), value: 'Vue', id: new HashGenerator().getHashValue()},
         {icon: require('@/assets/image/skill/skill-node.png'), value: 'Node', id: new HashGenerator().getHashValue()},
-        {icon: 'https://www.webpackjs.com/assets/favicon.ico', value: 'webpack', id: new HashGenerator().getHashValue()},
-        {icon: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588965283567&di=2d525493a8477ee8117aa0984d497f87&imgtype=0&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fe4dde71190ef76c6ac26b6319516fdfaaf516737.jpg', value: 'JavaScript', id: new HashGenerator().getHashValue()}
+        {icon: require('@/assets/image/skill/webpack.jpg'), value: 'webpack', id: new HashGenerator().getHashValue()},
+        {icon: require('@/assets/image/skill/js.jpg'), value: 'JavaScript', id: new HashGenerator().getHashValue()},
+        {icon: require('@/assets/image/skill/react.jpg'), value: 'React', id: new HashGenerator().getHashValue()}
       ]
     }
   ],
