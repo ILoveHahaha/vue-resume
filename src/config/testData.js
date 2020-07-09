@@ -56,7 +56,7 @@ export default {
           secondParam: '',
           thirdParam: '',
           content: `
-            两年多的前端开发经验，专业是信息与计算科学。喜欢通过数据来探究人与产品，热爱新技术，喜欢自己造轮子提高开发效率。常用的技术有vue、node.js、JavaScript等等，遵从设计模式里的六大原则。
+            三年的前端开发经验，专业是信息与计算科学。喜欢通过数据来探究人与产品，热爱新技术，喜欢自己造轮子提高开发效率。常用的技术有vue、node.js、JavaScript等等，遵从设计模式里的六大原则。
           `,
           paramStatus: false,
           contentStatus: true
@@ -106,11 +106,26 @@ export default {
         },
         {
           id: new HashGenerator().getHashValue(),
+          firstParam: '审批4.0系统',
+          secondParam: '前端',
+          thirdParam: '2020.5 - 至今',
+          content: `
+            该项目主要是公司后台的项目管理系统，在该项目中本人通过灵活的配置vue-cli来提升工作效率。主要做了以下的配置：
+            1.配置happypack，通过获取开发者电脑的一半cpu数来开启多线程提升至少50%的项目打包和构建的速度。
+            2.封装了一个svg组件，读取svg文件目录下的所有svg，并且利用svg-sprite-loader这个loader，使得可以直接输入某个svg的文件名就直接读取展示出来，减少冗余代码
+          `,
+          paramStatus: true,
+          contentStatus: true
+        },
+        {
+          id: new HashGenerator().getHashValue(),
           firstParam: '开发区智能审批项目开发',
           secondParam: '前端',
-          thirdParam: '2019.5 - 2020.3',
+          thirdParam: '2019.5 - 2020.5',
           content: `
-            该项目是面向群众的一个政府政务服务办事系统。主要分为终端智能审批系统、客户端排队取号系统和终端预约取号系统。整个项目都是通过vue来做页面的架构，智能审批系统由于与第三方对接他们的组件，故使用webpack来引入他们的代码组件。排队取号系统通过websocket来与后端建立连接来返回要展示的数据。预约取号系统通过webRTC技术来通过前端获取当前机器的内外ip，从而方便运维人员针对某个网段下的机器进行特定内容推送，进而扩展该系统的可用性。
+            该项目是面向群众的一个政府政务服务办事系统。在该项目中本人通过如下手段来提升工作效率：
+            1.由于该项目是与其他厂商合作，他们提供的插件或者库比较老，导致引入工程化的前端项目时有点棘手，通过配置webpack的alias来局部引用这些库，避免污染到全局变量，使问题控制在一个范围内
+            2.由于该项目是个多页应用，使用webpack进行项目优化，利用HtmlWebpackExternalsPlugin提取公共资源（vue、vue-router等），减少打包之后大小。
           `,
           paramStatus: true,
           contentStatus: true
@@ -121,18 +136,9 @@ export default {
           secondParam: '前端',
           thirdParam: '2018.7 - 2018.11',
           content: `
-            该项目是面向群众的一个政府政务服务办事系统。主要分为终端办事系统、移动端办事系统和数据展示系统。整个项目的界面主要采用的是vue来做架构，通过websocket与小程序建立连接来支持小程序登录，用websocket的时候通过一个心跳检测来减少因断线产生的异常，通过canvas来实现人脸截图支持人脸登录。在数据展示系统通过echarts和websocket实现数据图表的实时更新。整个项目通过node来实现接口转发和第三方登录。
-          `,
-          paramStatus: true,
-          contentStatus: true
-        },
-        {
-          id: new HashGenerator().getHashValue(),
-          firstParam: '数据可视化监控平台',
-          secondParam: '前端',
-          thirdParam: '2018.8 - 2019.11',
-          content: `
-            该项目主要是做一个组件化的监控平台，主要运用vue、vuex和websocket，通过封装公有的可复用的组件化开发来使得可以根据不同现场的需求进行快速敏捷的开发。
+            该项目是面向群众的一个政府政务服务办事系统。在该项目中的亮点有：
+            1.利用sass-resources-loader来全局混入公共的sass样式，不必每个文件都导入公共的sass样式
+            2.简单的封装了一下webSocket，因为webSocket在一段时间内静默会断线，所以加入了心跳包。
           `,
           paramStatus: true,
           contentStatus: true
